@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bugs | SoloBug</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/bugs.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <header class="main-header">
+    <div class="container header-inner">
+      <div class="brand" onclick="window.location.href='dashboard.html'" style="cursor:pointer;">
+        SoloBug
+      </div>
+
+      <div class="header-actions">
+        <span id="navUser"></span>
+        <button class="btn btn-danger" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container bugs-page">
+    <div class="bugs-header">
+      <div>
+        <h1>Bugs</h1>
+        <p>Track issues project-wise with clear details, useful evidence, and a proper workflow history.</p>
+      </div>
+
+      <div class="bugs-header-right">
+        <select id="projectFilter" class="project-filter-select">
+          <option value="">Select Project</option>
+        </select>
+        <button class="btn btn-primary" id="openBugModalBtn">+ New Bug</button>
+      </div>
+    </div>
+
+    <div class="bugs-filters">
+      <div class="filter-group">
+        <label for="searchBug">Search</label>
+        <input type="text" id="searchBug" placeholder="Search by bug title"/>
+      </div>
+
+      <div class="filter-group">
+        <label for="severityFilter">Severity</label>
+        <select id="severityFilter">
+          <option value="">All Severities</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="Critical">Critical</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="statusFilter">Status</label>
+        <select id="statusFilter">
+          <option value="">All Statuses</option>
+          <option value="Open">Open</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Resolved">Resolved</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="bugsEmptyState" class="empty-state">
+      <h3>No bugs yet</h3>
+      <p>Select a project and create your first issue to start tracking everything properly.</p>
+    </div>
+
+    <div id="bugsList" class="bugs-list"></div>
+  </div>
+
+  <!-- CREATE BUG MODAL -->
+  <div class="modal-overlay" id="bugModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h2>Create New Bug</h2>
+          <p>Add a new issue with context, evidence, and optional code analysis.</p>
+        </div>
+        <button class="modal-close" id="closeBugModalBtn">&times;</button>
+      </div>
+
+      <form id="bugForm">
+        <div id="smartBugInsight" class="smart-bug-insight" style="display:none;"></div>
+
+        <div class="form-group">
+          <label for="bugProject">Project</label>
+          <select id="bugProject" required>
+            <option value="">Select Project</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="bugTitle">Bug Title</label>
+          <input type="text" id="bugTitle" placeholder="Enter bug title" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="bugDescription">Description</label>
+          <textarea id="bugDescription" rows="4" placeholder="Describe the issue"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="bugSteps">Steps to Reproduce</label>
+          <textarea id="bugSteps" rows="4" placeholder="Enter reproduction steps"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="bugCodeSnippet">Code Snippet</label>
+          <textarea id="bugCodeSnippet" rows="5" placeholder="Paste optional code snippet for bug risk analysis"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="bugTerminalMessage">Error / Terminal Message</label>
+          <textarea id="bugTerminalMessage" rows="4" placeholder="Paste terminal output, exception, console error, or backend error message"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="bugScreenshot">Screenshot</label>
+          <input type="file" id="bugScreenshot" accept="image/*"/>
+        </div>
+
+        <div class="two-column-grid">
+          <div class="form-group">
+            <label for="bugSeverity">Severity</label>
+            <select id="bugSeverity" required>
+              <option value="">Select Severity</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="Critical">Critical</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="bugStatus">Status</label>
+            <select id="bugStatus" required>
+              <option value="Open">Open</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Resolved">Resolved</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn" id="cancelBugBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Bug</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- BUG DETAIL MODAL -->
+  <div class="modal-overlay" id="bugDetailModal">
+    <div class="modal-card" style="max-width: 900px;">
+      <div class="modal-header">
+        <div>
+          <h2>Bug Details</h2>
+          <p>Full issue information, evidence, and history.</p>
+        </div>
+        <button class="modal-close" id="closeBugDetailModalBtn">&times;</button>
+      </div>
+
+      <div id="bugDetailContent"></div>
+    </div>
+  </div>
+
+  <!-- EDIT BUG MODAL -->
+  <div class="modal-overlay" id="editBugModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h2>Edit Bug</h2>
+          <p>Update bug details, code context, and screenshot handling.</p>
+        </div>
+        <button class="modal-close" id="closeEditBugModalBtn">&times;</button>
+      </div>
+
+      <form id="editBugForm">
+        <input type="hidden" id="editBugId"/>
+
+        <div class="form-group">
+          <label for="editBugTitle">Bug Title</label>
+          <input type="text" id="editBugTitle" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="editBugDescription">Description</label>
+          <textarea id="editBugDescription" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="editBugSteps">Steps to Reproduce</label>
+          <textarea id="editBugSteps" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="editBugCodeSnippet">Code Snippet</label>
+          <textarea id="editBugCodeSnippet" rows="5"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="editBugTerminalMessage">Error / Terminal Message</label>
+          <textarea id="editBugTerminalMessage" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="editBugScreenshot">Replace Screenshot</label>
+          <input type="file" id="editBugScreenshot" accept="image/*"/>
+        </div>
+
+        <div class="form-group">
+          <label style="display:flex; align-items:center; gap:10px; font-weight:600; cursor:pointer;">
+            <input type="checkbox" id="removeBugScreenshot" style="width:auto;"/>
+            Remove existing screenshot
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="editBugSeverity">Severity</label>
+          <select id="editBugSeverity" required>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="Critical">Critical</option>
+          </select>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn" id="cancelEditBugBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DELETE BUG MODAL -->
+  <div class="modal-overlay" id="deleteBugModal">
+    <div class="modal-card" style="max-width: 460px;">
+      <div class="modal-header">
+        <div>
+          <h2>Delete Bug</h2>
+          <p>This action cannot be undone.</p>
+        </div>
+        <button class="modal-close" id="closeDeleteBugModalBtn">&times;</button>
+      </div>
+
+      <div class="confirm-body" id="deleteBugText"></div>
+
+      <div class="confirm-actions">
+        <button type="button" class="btn" id="cancelDeleteBugBtn">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBugBtn">Delete Bug</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/bugs.js"></script>
+</body>
+</html>

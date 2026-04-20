@@ -1,0 +1,230 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  padding: 24px;
+}
+
+.auth-wrapper {
+  width: 100%;
+  max-width: 1160px;
+  display: grid;
+  grid-template-columns: 1.06fr 0.94fr;
+  overflow: hidden;
+  border-radius: 34px;
+  box-shadow: 0 28px 70px rgba(15, 23, 42, 0.10);
+  background: #ffffff;
+  border: 1px solid #e6ebf2;
+  min-height: 700px;
+}
+
+.auth-left {
+  padding: 56px;
+  background: #f8fbff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #e7ecf4;
+}
+
+.auth-brand-wrap {
+  margin-bottom: 34px;
+}
+
+.auth-brand-wrap .brand {
+  display: inline-block;
+}
+
+.auth-hero h2 {
+  font-size: 46px;
+  line-height: 1.04;
+  margin-bottom: 18px;
+  letter-spacing: -0.06em;
+  color: #0f172a;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, Helvetica, sans-serif;
+}
+
+.auth-hero p {
+  font-size: 15px;
+  line-height: 1.92;
+  color: #64748b;
+  max-width: 560px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.auth-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.auth-point {
+  background: #ffffff;
+  border: 1px solid #e7ecf4;
+  border-radius: 20px;
+  padding: 18px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+}
+
+.auth-point:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);
+  border-color: #dbe4ef;
+}
+
+.auth-point h3 {
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: #101828;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, Helvetica, sans-serif;
+}
+
+.auth-point p {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #667085;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.auth-right {
+  padding: 50px 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  text-decoration: none;
+  color: #4f46e5;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.auth-back-link:hover {
+  text-decoration: underline;
+}
+
+.small-text {
+  color: #667085;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.auth-card h2 {
+  font-size: 34px;
+  margin-bottom: 10px;
+  color: #101828;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, Helvetica, sans-serif;
+}
+
+.sub-text {
+  color: #667085;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 28px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.auth-form-group {
+  margin-bottom: 18px;
+}
+
+.auth-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #344054;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.auth-form-group input {
+  height: 50px;
+}
+
+.auth-actions {
+  margin-top: 10px;
+}
+
+.auth-actions .btn {
+  width: 100%;
+  min-height: 50px;
+}
+
+.auth-bottom-text {
+  margin-top: 22px;
+  text-align: center;
+  color: #667085;
+  font-size: 14px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.auth-bottom-text a {
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.auth-bottom-text a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+  .auth-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-left {
+    padding: 36px 28px 20px;
+    border-right: none;
+    border-bottom: 1px solid #e7ecf4;
+  }
+
+  .auth-right {
+    padding: 26px 28px 36px;
+  }
+
+  .auth-hero h2 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 576px) {
+  .auth-page {
+    padding: 16px;
+  }
+
+  .auth-left,
+  .auth-right {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .auth-hero h2 {
+    font-size: 30px;
+  }
+
+  .auth-points {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-card h2 {
+    font-size: 28px;
+  }
+}

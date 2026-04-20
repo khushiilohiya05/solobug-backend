@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | SoloBug</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <div class="auth-wrapper">
+    <div class="auth-left">
+      <div>
+        <div class="auth-brand-wrap">
+          <div class="brand" onclick="window.location.href='index.html'" style="cursor:pointer;">
+            SoloBug
+          </div>
+        </div>
+
+        <div class="auth-hero">
+          <h2>Stay on top of your bugs without losing momentum.</h2>
+          <p>
+            SoloBug gives personal projects a clean structure. Log issues properly, keep track of what changed, and see what actually needs attention instead of managing everything from memory.
+          </p>
+        </div>
+
+        <div class="auth-points">
+          <div class="auth-point">
+            <h3>Focused workflow</h3>
+            <p>Track issues by project, severity, and status without unnecessary complexity.</p>
+          </div>
+
+          <div class="auth-point">
+            <h3>Clear progress</h3>
+            <p>Know what is open, what is resolved, and where the highest risk is building up.</p>
+          </div>
+
+          <div class="auth-point">
+            <h3>Useful bug evidence</h3>
+            <p>Add screenshots and code snippets so issues are easier to understand later.</p>
+          </div>
+
+          <div class="auth-point">
+            <h3>Smarter tracking</h3>
+            <p>Get duplicate hints, severity suggestions, and lightweight code-risk analysis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-right">
+      <div class="auth-card">
+        <a href="index.html" class="auth-back-link">← Back to Home</a>
+
+        <p class="small-text">Welcome back</p>
+        <h2>Login to SoloBug</h2>
+        <p class="sub-text">
+          Continue from where you left off and manage your projects, bugs, and reports from one place.
+        </p>
+
+        <form id="loginForm">
+          <div class="auth-form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="Enter your email" required />
+          </div>
+
+          <div class="auth-form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Enter your password" required />
+          </div>
+
+          <div class="auth-actions">
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+
+        <p class="auth-bottom-text">
+          Don’t have an account?
+          <a href="signup.html">Create one</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

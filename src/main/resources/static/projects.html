@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects | SoloBug</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/projects.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <header class="main-header">
+    <div class="container header-inner">
+      <div class="brand" onclick="window.location.href='dashboard.html'" style="cursor:pointer;">
+        SoloBug
+      </div>
+
+      <div class="header-actions">
+        <span id="navUser"></span>
+        <button id="logoutBtn" class="btn btn-danger">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container projects-page">
+
+    <div class="projects-header">
+      <div>
+        <h1>Projects</h1>
+        <p>Create, manage, search, and organize your development projects without clutter.</p>
+      </div>
+
+      <button class="btn btn-primary" id="openProjectModalBtn">+ New Project</button>
+    </div>
+
+    <div class="projects-toolbar">
+      <div class="toolbar-group">
+        <label for="projectSearch">Search</label>
+        <input type="text" id="projectSearch" placeholder="Search by project title"/>
+      </div>
+
+      <div class="toolbar-group">
+        <label for="projectSort">Sort By</label>
+        <select id="projectSort">
+          <option value="latest">Latest</option>
+          <option value="oldest">Oldest</option>
+          <option value="title">Title A–Z</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="projectsEmptyState" class="empty-state">
+      <h3>No projects yet</h3>
+      <p>Create your first project to start organizing issues properly.</p>
+    </div>
+
+    <div id="projectsGrid" class="projects-grid"></div>
+  </div>
+
+  <!-- CREATE PROJECT MODAL -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h2>Create New Project</h2>
+          <p>Add a project space for your bug tracking workflow.</p>
+        </div>
+        <button class="modal-close" id="closeProjectModalBtn">&times;</button>
+      </div>
+
+      <form id="projectForm">
+        <div class="form-group">
+          <label for="projectTitle">Project Title</label>
+          <input type="text" id="projectTitle" placeholder="Enter project name" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="projectDescription">Description</label>
+          <textarea id="projectDescription" rows="4" placeholder="Describe your project"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="projectTechStack">Tech Stack</label>
+          <input
+            type="text"
+            id="projectTechStack"
+            placeholder="Example: HTML, CSS, JavaScript, Spring Boot, MySQL"
+          />
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn" id="cancelProjectBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- EDIT PROJECT MODAL -->
+  <div class="modal-overlay" id="editProjectModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h2>Edit Project</h2>
+          <p>Update your project details and keep the information current.</p>
+        </div>
+        <button class="modal-close" id="closeEditProjectModalBtn">&times;</button>
+      </div>
+
+      <form id="editProjectForm">
+        <input type="hidden" id="editProjectId"/>
+
+        <div class="form-group">
+          <label for="editProjectTitle">Project Title</label>
+          <input type="text" id="editProjectTitle" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="editProjectDescription">Description</label>
+          <textarea id="editProjectDescription" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="editProjectTechStack">Tech Stack</label>
+          <input type="text" id="editProjectTechStack"/>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn" id="cancelEditProjectBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DELETE PROJECT MODAL -->
+  <div class="modal-overlay" id="deleteProjectModal">
+    <div class="modal-card" style="max-width: 460px;">
+      <div class="modal-header">
+        <div>
+          <h2>Delete Project</h2>
+          <p>This action cannot be undone.</p>
+        </div>
+        <button class="modal-close" id="closeDeleteProjectModalBtn">&times;</button>
+      </div>
+
+      <div class="confirm-body" id="deleteProjectText"></div>
+
+      <div class="confirm-actions">
+        <button type="button" class="btn" id="cancelDeleteProjectBtn">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteProjectBtn">Delete Project</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/projects.js"></script>
+</body>
+</html>

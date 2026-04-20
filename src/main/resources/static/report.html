@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reports | SoloBug</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/report.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <header class="main-header no-print">
+    <div class="container header-inner">
+      <div class="brand" onclick="window.location.href='dashboard.html'" style="cursor:pointer;">
+        SoloBug
+      </div>
+
+      <div class="header-actions">
+        <span id="navUser"></span>
+        <button class="btn btn-danger" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container report-page">
+    <div class="report-header">
+      <div>
+        <h1>Weekly Report</h1>
+        <p>Review project health, current issue counts, and filtered bug summaries in one place.</p>
+      </div>
+
+      <div class="report-header-actions no-print">
+        <div class="report-filter-box">
+          <label for="reportRangeFilter">Report Range</label>
+          <select id="reportRangeFilter">
+            <option value="all">All Time</option>
+            <option value="7">Last 7 Days</option>
+            <option value="30">Last 30 Days</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" id="exportReportBtn">Export Report</button>
+      </div>
+    </div>
+
+    <div class="print-report-meta only-print">
+      <h2>SoloBug Report</h2>
+      <p id="printReportMetaText"></p>
+    </div>
+
+    <div class="report-stats-grid">
+      <div class="report-stat-card card">
+        <h3>Total Projects</h3>
+        <p id="reportTotalProjects">0</p>
+      </div>
+
+      <div class="report-stat-card card">
+        <h3>Total Bugs</h3>
+        <p id="reportTotalBugs">0</p>
+      </div>
+
+      <div class="report-stat-card card">
+        <h3>Open Bugs</h3>
+        <p id="reportOpenBugs">0</p>
+      </div>
+
+      <div class="report-stat-card card">
+        <h3>Resolved Bugs</h3>
+        <p id="reportResolvedBugs">0</p>
+      </div>
+
+      <div class="report-stat-card card">
+        <h3>Critical Bugs</h3>
+        <p id="reportCriticalBugs">0</p>
+      </div>
+    </div>
+
+    <div class="report-grid">
+      <div class="report-panel card">
+        <div class="panel-header">
+          <h2>Project-wise Bug Summary</h2>
+          <p>See how issues are distributed across your projects for the selected time range.</p>
+        </div>
+
+        <div id="projectSummaryEmpty" class="mini-empty-state">
+          No projects found yet.
+        </div>
+
+        <div id="projectSummaryList" class="project-summary-list"></div>
+      </div>
+
+      <div class="report-panel card">
+        <div class="panel-header">
+          <h2>Progress Insight</h2>
+          <p>A quick read on current bug pressure and completion trends.</p>
+        </div>
+
+        <div class="insight-box">
+          <div class="insight-item">
+            <span>Completion Rate</span>
+            <strong id="completionRate">0%</strong>
+          </div>
+
+          <div class="insight-item">
+            <span>Open Issue Pressure</span>
+            <strong id="openPressure">Low</strong>
+          </div>
+
+          <div class="insight-item">
+            <span>Critical Risk Level</span>
+            <strong id="criticalRisk">Low</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/report.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | SoloBug</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <header class="main-header">
+    <div class="container header-inner">
+      <div class="brand" onclick="window.location.href='dashboard.html'" style="cursor:pointer;">SoloBug</div>
+
+      <div class="header-actions">
+        <span id="navUser"></span>
+        <button id="logoutBtn" class="btn btn-danger">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container dashboard-container">
+    <div class="dashboard-header">
+      <div>
+        <h1>Dashboard</h1>
+        <p>See what is active, what is resolved, and where your projects currently need attention.</p>
+      </div>
+
+      <div class="dashboard-header-actions">
+        <button class="btn btn-primary" onclick="goToProjects()">Manage Projects</button>
+      </div>
+    </div>
+
+    <div class="stats-grid five-grid">
+      <div class="stat-card">
+        <h3>Total Projects</h3>
+        <p id="totalProjects">0</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Total Bugs</h3>
+        <p id="totalBugs">0</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Open Bugs</h3>
+        <p id="openBugs">0</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Resolved Bugs</h3>
+        <p id="resolvedBugs">0</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Critical Issues</h3>
+        <p id="criticalBugs">0</p>
+      </div>
+    </div>
+
+    <div class="dashboard-main-grid">
+      <div class="dashboard-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Quick Actions</h2>
+            <p>Jump directly into the parts of SoloBug you use most often.</p>
+          </div>
+        </div>
+
+        <div class="quick-actions">
+          <div class="action-card" onclick="goToProjects()">
+            <h3>Projects</h3>
+            <p>Create new workspaces, update project details, and keep your ideas organized.</p>
+          </div>
+
+          <div class="action-card" onclick="goToBugs()">
+            <h3>Bugs</h3>
+            <p>Track issues, update their status, and manage evidence like screenshots or code snippets.</p>
+          </div>
+
+          <div class="action-card" onclick="goToReports()">
+            <h3>Reports</h3>
+            <p>Review issue trends, filtered summaries, and exportable project health reports.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-panel risk-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Highest Risk Project</h2>
+            <p>The project currently carrying the most unresolved pressure.</p>
+          </div>
+        </div>
+
+        <div id="highestRiskProjectEmpty" class="mini-empty-state">
+          No risk data available yet.
+        </div>
+
+        <div id="highestRiskProjectCard" class="risk-project-card" style="display:none;"></div>
+      </div>
+    </div>
+
+    <div class="dashboard-bottom-grid">
+      <div class="dashboard-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Recent Projects</h2>
+            <p>Your latest project spaces inside SoloBug.</p>
+          </div>
+        </div>
+
+        <div id="recentProjectsEmpty" class="mini-empty-state">
+          No projects yet. Create your first one to get started.
+        </div>
+
+        <div id="recentProjectsList" class="recent-projects-list"></div>
+      </div>
+
+      <div class="dashboard-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Recent Bugs</h2>
+            <p>The most recently added issues across your projects.</p>
+          </div>
+        </div>
+
+        <div id="recentBugsEmpty" class="mini-empty-state">
+          No bugs yet. Add your first bug to start tracking activity.
+        </div>
+
+        <div id="recentBugsList" class="recent-bugs-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
